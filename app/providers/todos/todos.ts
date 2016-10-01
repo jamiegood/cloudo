@@ -1,17 +1,49 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
+import * as PouchDB from 'pouchdb';
 
-/*
-  Generated class for the Todos provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class Todos {
 
-  constructor(private http: Http) {}
+  data: any;
+  db: any;
+  remote: any;
+
+  constructor(private http: Http) {
+
+    this.db = new PouchDB('cloudo');
+
+    this.remote = 'http://localhost:5984/cloudo';
+
+    let options = {
+      live: true,
+      retry: true,
+      continuous: true
+    };
+
+    this.db.sync(this.remote, options);
+
+  }
+
+  getTodos() {
+
+  }
+
+  createTodo(todo){
+
+  }
+
+  updateTodo(todo){
+
+  }
+
+  deleteTodo(todo){
+
+  }
+
+  handleChange(change){
+
+  }
 
 }
-
